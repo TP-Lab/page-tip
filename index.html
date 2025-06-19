@@ -19,7 +19,7 @@
   }
 
   body {
-    background: #FF7114;
+    background: #E34840;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +82,7 @@
     border: 1px solid #ffffff;
     border-radius: 6px;
     cursor: pointer;
-    display: inline-block;
+    display: none;
     line-height: 33px;
   }
 </style>
@@ -94,7 +94,7 @@
         src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzY4IiBoZWlnaHQ9Ijc2OCIgdmlld0JveD0iMCAwIDc2OCA3NjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI3NjgiIGhlaWdodD0iNzY4IiBmaWxsPSIjMjk4MEZFIi8+CjxwYXRoIGQ9Ik0zMjUuNDc5IDIxMi42NzZIMzIxLjk2MUgxMzQuMzI0QzEyNS4zODQgMjEyLjY3NiAxMTguMTU2IDIxOS45MDQgMTE4LjE1NiAyMjguODQzVjI5NC40NjRDMTE4LjE1NiAzMDMuNDAzIDEyNS4zODQgMzEwLjYzMSAxMzQuMzI0IDMxMC42MzFIMTc4LjM1NkgxOTUuODU1VjMzMC4wMzJWNTM3LjczNkMxOTUuODU1IDU0Ni42NzUgMjAzLjA4MyA1NTMuOTAzIDIxMi4wMjIgNTUzLjkwM0gyODAuODc2QzI4OS44MTYgNTUzLjkwMyAyOTcuMDQ0IDU0Ni42NzUgMjk3LjA0NCA1MzcuNzM2VjMzMC4wMzJWMzI4LjIyNVYzMTAuNjMxSDMxNC41NDNIMzIxLjY3NUgzMjUuMTk0QzM1Mi4yMDMgMzEwLjYzMSAzNzQuMTcyIDI4OC42NjMgMzc0LjE3MiAyNjEuNjU0QzM3NC40NTcgMjM0LjY0NCAzNTIuNDg5IDIxMi42NzYgMzI1LjQ3OSAyMTIuNjc2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUxMS40OTggMjEyLjY3NkM0MzYuNzQ4IDIxMi42NzYgMzc2LjA3MiAyNzMuMzUxIDM3Ni4wNzIgMzQ4LjEwMlY1MzcuMjZDMzc2LjA3MiA1NDYuMiAzODMuMyA1NTMuNDI4IDM5Mi4yNCA1NTMuNDI4SDQ2NC43MDhDNDczLjY0NyA1NTMuNDI4IDQ4MC44NzUgNTQ2LjIgNDgwLjg3NSA1MzcuMjZWNDgwLjA4Mkw0ODAuOTcgNDgwLjEwNFYzNDguMTAyQzQ4MC45NyAzMzEuMjY4IDQ5NC42NjUgMzE3LjU3NCA1MTEuNDk4IDMxNy41NzRDNTI4LjMzMSAzMTcuNTc0IDU0Mi4wMjYgMzMxLjI2OCA1NDIuMDI2IDM0OC4xMDJDNTQyLjAyNiAzNjIuMjcyIDUzMi40MjEgMzc0LjE2IDUxOS4yOTYgMzc3LjU4M0M1MTYuODI0IDM3OC4yNDkgNTE0LjE2MSAzNzguNjI5IDUxMS40OTggMzc4LjYyOUM1MTAuNzcxIDM3OC42MjkgNTEwLjEzIDM3OC42MyA1MDkuNDEgMzc4LjU0N1YzNzguNTM0QzQ5My41MjggMzc3LjQ4OCA0ODAuOTc1IDM2NC4yNjkgNDgwLjk3NSAzNDguMTAyVjQ4MC4xMDRDNDg0LjU4OSA0ODAuOTYgNDg4LjI5OCA0ODEuNjI1IDQ5Mi4xMDIgNDgyLjE5NkM0OTcuNDI3IDQ4Mi45NTcgNTAyLjk0MyA0ODMuNDMyIDUwOC40NTkgNDgzLjUyN0w1MTEuNSA0ODMuNTI4QzUxNC4xNjIgNDgzLjUyOCA1MTYuNzI5IDQ4My40MzIgNTE5LjI5NiA0ODMuMzM3QzU5MC40MzMgNDc5LjI0OCA2NDYuOTI0IDQyMC4yODQgNjQ2LjkyNCAzNDguMTAyQzY0Ny4wMTkgMjczLjM1MSA1ODYuMzQ0IDIxMi42NzYgNTExLjQ5OCAyMTIuNjc2WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg=='>
       <div>
         <div id="pageTitle" class="f22 bold">
-          风险网站警告！
+          恶意网站警告！
         </div>
         <div id="text0" class="mt6">
           您正在连接的第三方网站已经被确认为恶意链接，将给您的资产安全带来巨大风险，请勿继续访问和连接钱包！
@@ -224,10 +224,6 @@
     return '';
   };
   const risk = getQueryString('risk')
-  if (risk === '40') {
-    document.getElementById('continueBtn').style.display = 'none';
-    document.body.style.backgroundColor = '#E34840';
-  }
   const hrefStr = getQueryString('href')
   const hostnameStr = getQueryString('hostname')
   const continueBtn = document.getElementById('continueBtn');
@@ -242,7 +238,8 @@
 
   const content = {
     zh: {
-      pageTitle: "风险网站警告！",
+      pageTitle: "恶意网站警告！",
+      pageTitleWran: "风险网站警告！",
       text0Wran: '您正在访问的第三方链接被多数用户举报，可能存在风险。请您不要相信任何免费空投、挖矿、高回报项目！',
       text0: "您正在连接的第三方网站已经被确认为恶意链接，将给您的资产安全带来巨大风险，请勿继续访问和连接钱包！",
       text1: "TokenPocket 钱包整合了多家安全数据库信息，会为您检测并提示风险网站",
@@ -253,6 +250,7 @@
     },
     en: {
       pageTitle: "Risky Site Warning",
+      pageTitleWran: "Malicious Website Warning!",
       text0Wran:'The third-party website you are accessing has been reported by many users and may be risky. Do not trust any free airdrops, mining schemes, or high-return projects!',
       text0: "The third-party website you are accessing has been confirmed as malicious and poses a significant risk to your asset security. Do not continue visiting or connecting your wallet!",
       text1: "TokenPocket wallet integrates multiple security databases to detect and warn you about risky websites.",
@@ -274,6 +272,9 @@
   document.getElementById('continueBtn').innerText = content[lang].continueBtn;
 
   if (risk === '30') {
+    document.getElementById('pageTitle').innerText = content[lang].pageTitleWran;
     document.getElementById('text0').innerText = content[lang].text0Wran;
+    document.getElementById('continueBtn').style.display = 'inline-block';
+    document.body.style.backgroundColor = '#FF7114';
   }
 </script>
