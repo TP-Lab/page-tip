@@ -75,7 +75,8 @@
     margin-left: 16px;
   }
 
-  #continueBtn {
+  #continueBtn,
+  #stopBtn {
     padding: 0 16px;
     min-width: 88px;
     height: 33px;
@@ -84,6 +85,34 @@
     cursor: pointer;
     display: none;
     line-height: 33px;
+  }
+
+  #continueBtn2 {
+    padding: 0 16px;
+    min-width: 88px;
+    height: 33px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+    line-height: 33px;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+  }
+
+  #checkboxLabel {
+    display: none;
+  }
+
+  #checkbox {
+    border-radius: 4px;
+  }
+
+  #checkBoxText {
+    margin-left: 8px;
   }
 </style>
 
@@ -107,7 +136,7 @@
       <li id="text3" class="mt12">如发现可疑网站或遇到错误拦截，欢迎联系 service@tokenpocket.pro 反馈，感谢您对行业安全做出的贡献</li>
     </ul>
     <div class="flex-align-items-center mt20">
-     <div id="text4">数据支持</div> 
+      <div id="text4">数据支持</div>
       <?xml version="1.0" encoding="UTF-8"?>
       <svg class="ml16" width="84px" height="16px" viewBox="0 0 84 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -208,6 +237,18 @@
       <div id="continueBtn" class="mt20">
         继续访问
       </div>
+      <div id="stopBtn" class="mt20">
+        停止访问
+      </div>
+      <div id="continueBtn2" class="mt20">
+        继续访问
+      </div>
+    </div>
+    <div class="mt12">
+      <label id="checkboxLabel">
+        <input type="checkbox" id="checkbox">
+        <span id="checkBoxText">我已了解并知晓继续访问该网站可能会造成资产损失</span>
+      </label>
     </div>
   </div>
 </body>
@@ -234,6 +275,26 @@
     }
   };
 
+  const stopBtn = document.getElementById('stopBtn');
+  console.log('stopBtn', stopBtn)
+  stopBtn.onclick = async () => {
+    location.replace('https://tp.xyz');
+  };
+  const continueBtn2 = document.getElementById('continueBtn2');
+  continueBtn2.onclick = async () => {
+    const checkboxLabel = document.getElementById('checkboxLabel')
+    const checkbox = document.getElementById('checkbox')
+    if (!checkboxLabel.style.display) {
+      checkboxLabel.style.display = 'flex'
+    }
+    if (!checkbox.checked) {
+      return
+    }
+    if (hostnameStr) {
+      const res = await window.TokenPocketProvider.setPassRiskTime(hostnameStr);
+      location.replace(hrefStr);
+    }
+  };
 
 
   const content = {
@@ -246,18 +307,24 @@
       text2: "请注意，未出现提示的网站不意味着绝对安全。若您坚持访问，需承担因此引发的资产安全风险",
       text3: "如发现可疑网站或遇到错误拦截，欢迎联系 service@tokenpocket.pro 反馈，感谢您对行业安全做出的贡献",
       text4: "数据支持",
-      continueBtn: "继续访问"
+      continueBtn: "继续访问",
+      continueBtn2: "继续访问",
+      stopBtn: "停止访问",
+      checkBoxText: "我已了解并知晓继续访问该网站可能会造成资产损失"
     },
     en: {
       pageTitle: "Risky Site Warning",
       pageTitleWran: "Malicious Website Warning!",
-      text0Wran:'The third-party website you are accessing has been reported by many users and may be risky. Do not trust any free airdrops, mining schemes, or high-return projects!',
+      text0Wran: 'The third-party website you are accessing has been reported by many users and may be risky. Do not trust any free airdrops, mining schemes, or high-return projects!',
       text0: "The third-party website you are accessing has been confirmed as malicious and poses a significant risk to your asset security. Do not continue visiting or connecting your wallet!",
       text1: "TokenPocket wallet integrates multiple security databases to detect and warn you about risky websites.",
       text2: "Please note that the absence of a warning does not guarantee absolute safety. If you choose to proceed, you bear the risk of any potential asset loss.",
       text3: "If you discover a suspicious site or encounter a false alarm, feel free to contact us at service@tokenpocket.pro. Thank you for contributing to the security of the ecosystem.",
       text4: "Powered By",
-      continueBtn: "Continue Anyway"
+      continueBtn: "Continue Anyway",
+      continueBtn2: "Continue Anyway",
+      stopBtn: "Stop Access",
+      checkBoxText: "I have understood and know that continuing to visit this website may result in asset loss"
     }
   };
 
@@ -270,6 +337,9 @@
   document.getElementById('text3').innerText = content[lang].text3;
   document.getElementById('text4').innerText = content[lang].text4;
   document.getElementById('continueBtn').innerText = content[lang].continueBtn;
+  document.getElementById('continueBtn2').innerText = content[lang].continueBtn2;
+  document.getElementById('stopBtn').innerText = content[lang].stopBtn;
+  document.getElementById('checkBoxText').innerText = content[lang].checkBoxText;
 
   if (risk === '30') {
     document.getElementById('pageTitle').innerText = content[lang].pageTitleWran;
@@ -277,4 +347,9 @@
     document.getElementById('continueBtn').style.display = 'inline-block';
     document.body.style.backgroundColor = '#FF7114';
   }
+  if (risk === '40') {
+    document.getElementById('stopBtn').style.display = 'inline-block';
+    document.getElementById('continueBtn2').style.display = 'inline-block';
+  }
+
 </script>
